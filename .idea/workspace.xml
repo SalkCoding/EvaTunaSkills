@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="alkaskills" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="031b074c-51cf-4a2b-b497-fe721017535e" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="alkaskills" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="alkaskills" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="alkaskills" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="alkaskills" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1OxHjIFxwJW3qQ4V7UHvPDzoOeW" />
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="alkaskills" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15429688" />
+    <property name="project.structure.side.proportion" value="0.36479127" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="OPEN_URL_DIALOG">
+      <recent name="https://github.com/EvaTuna/Towny.git" />
+      <recent name="https://github.com/EvaTuna/Towny" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="net.alkaonline.alkaskills.command" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Josangbeom\Desktop\Programming\IntelliJ IDEA\Java\AlkaSkills\src\main\kotlin" />
+      <recent name="C:\Users\Josangbeom\Desktop\Programming\IntelliJ IDEA\Java\AlkaSkills\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="AlkaSkills [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.AlkaSkills [dependencies]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="031b074c-51cf-4a2b-b497-fe721017535e" name="Default Changelist" comment="" />
+      <created>1564912460593</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564912460593</updated>
+      <workItem from="1564912466013" duration="24789000" />
+      <workItem from="1564982571010" duration="4669000" />
+      <workItem from="1564992367727" duration="714000" />
+      <workItem from="1564993137738" duration="7524000" />
+      <workItem from="1565018257130" duration="2082000" />
+      <workItem from="1565022783583" duration="438000" />
+      <workItem from="1565023988310" duration="3314000" />
+      <workItem from="1565075286543" duration="11461000" />
+      <workItem from="1565089102859" duration="7866000" />
+      <workItem from="1565099748855" duration="39000" />
+      <workItem from="1565101124466" duration="1627000" />
+      <workItem from="1565107912293" duration="2182000" />
+      <workItem from="1565160183117" duration="1326000" />
+      <workItem from="1565177087039" duration="4142000" />
+      <workItem from="1565186183986" duration="658000" />
+      <workItem from="1565190288490" duration="1358000" />
+      <workItem from="1565197369046" duration="6000000" />
+      <workItem from="1565203655545" duration="188000" />
+      <workItem from="1565241816186" duration="2329000" />
+      <workItem from="1565269410691" duration="1619000" />
+      <workItem from="1565278080499" duration="2977000" />
+      <workItem from="1565284339185" duration="1476000" />
+      <workItem from="1565338684679" duration="2919000" />
+      <workItem from="1565356453855" duration="3191000" />
+      <workItem from="1565368782756" duration="2166000" />
+      <workItem from="1565427927789" duration="155000" />
+      <workItem from="1565428629531" duration="4292000" />
+      <workItem from="1565441583097" duration="2392000" />
+      <workItem from="1565595587043" duration="7989000" />
+      <workItem from="1565686619737" duration="609000" />
+      <workItem from="1565704232765" duration="4554000" />
+      <workItem from="1565775530861" duration="14050000" />
+      <workItem from="1565807653450" duration="117000" />
+      <workItem from="1565857781486" duration="1811000" />
+      <workItem from="1565859698412" duration="89000" />
+      <workItem from="1565864459789" duration="2577000" />
+      <workItem from="1566034006981" duration="536000" />
+      <workItem from="1566034638065" duration="1605000" />
+      <workItem from="1566052325610" duration="519000" />
+      <workItem from="1566144330324" duration="53000" />
+      <workItem from="1566146685104" duration="65000" />
+      <workItem from="1566229320645" duration="684000" />
+      <workItem from="1566230129030" duration="57000" />
+      <workItem from="1566230437434" duration="532000" />
+      <workItem from="1566231483674" duration="569000" />
+      <workItem from="1566233908729" duration="113000" />
+      <workItem from="1566305820084" duration="3135000" />
+      <workItem from="1566313882917" duration="28000" />
+      <workItem from="1566387862850" duration="106000" />
+      <workItem from="1566390054280" duration="602000" />
+      <workItem from="1566392640897" duration="701000" />
+      <workItem from="1566404629168" duration="147000" />
+      <workItem from="1566648027791" duration="63000" />
+      <workItem from="1566648124101" duration="6975000" />
+      <workItem from="1566664427914" duration="27000" />
+      <workItem from="1566664675478" duration="1126000" />
+      <workItem from="1566706602871" duration="216000" />
+      <workItem from="1566713199363" duration="25000" />
+      <workItem from="1566727936682" duration="2613000" />
+      <workItem from="1566815715320" duration="1810000" />
+      <workItem from="1566818555903" duration="3954000" />
+      <workItem from="1566825649697" duration="914000" />
+      <workItem from="1566904788987" duration="1039000" />
+      <workItem from="1566981756009" duration="24000" />
+      <workItem from="1566982234056" duration="328000" />
+      <workItem from="1566982846785" duration="18000" />
+      <workItem from="1566989746691" duration="22000" />
+      <workItem from="1567002759355" duration="4604000" />
+      <workItem from="1567085011660" duration="1061000" />
+      <workItem from="1567154553724" duration="1779000" />
+      <workItem from="1567158510893" duration="2054000" />
+      <workItem from="1567175690974" duration="256000" />
+      <workItem from="1567176030951" duration="83000" />
+      <workItem from="1567179289545" duration="13000" />
+      <workItem from="1567263542647" duration="376000" />
+      <workItem from="1567264137202" duration="496000" />
+      <workItem from="1567319669183" duration="4701000" />
+      <workItem from="1567340980966" duration="21000" />
+      <workItem from="1567510565817" duration="1962000" />
+      <workItem from="1567515710009" duration="1676000" />
+      <workItem from="1567597653490" duration="3344000" />
+      <workItem from="1567692038779" duration="1097000" />
+      <workItem from="1567952597055" duration="1552000" />
+      <workItem from="1568382143156" duration="15000" />
+      <workItem from="1568382173943" duration="164000" />
+      <workItem from="1568471677647" duration="1217000" />
+      <workItem from="1568535869616" duration="46000" />
+      <workItem from="1568628409663" duration="574000" />
+      <workItem from="1568629490673" duration="8889000" />
+      <workItem from="1568711082280" duration="4170000" />
+      <workItem from="1568805955549" duration="7098000" />
+      <workItem from="1568891601771" duration="9723000" />
+      <workItem from="1568902072279" duration="151000" />
+      <workItem from="1569074684838" duration="15000" />
+      <workItem from="1569757645463" duration="1354000" />
+      <workItem from="1569761138882" duration="6824000" />
+      <workItem from="1569847298740" duration="53000" />
+      <workItem from="1569850582493" duration="1140000" />
+      <workItem from="1569851764438" duration="1177000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

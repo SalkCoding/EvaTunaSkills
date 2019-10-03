@@ -1,0 +1,13 @@
+name: AlkaSkills
+version: 0.0.2-SNAPSHOT
+description: AlkaSkills
+main: net.alkaonline.alkaskills.AlkaSkills
+depend: [kotlinbukkit, Skript, WorldGuard]
+api-version: 1.14
+commands:
+  skills: {}
+  giveexp: {}
+  setlevel: {}
+  clearskills: {}
+  playerinfo: {}
+  #addorepopulator: {}

@@ -1,0 +1,6 @@
+DBName: 'test'
+DBIP: 'localhost'
+Port: 3307
+UserName: 'root'
+Password: 'test'
+Encoding: 'utf-8'
