@@ -14,7 +14,7 @@ import java.sql.SQLException
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-private var instance: DateBase? = null
+/*private var instance: DateBase? = null
 
 class DateBase {
 
@@ -24,7 +24,11 @@ class DateBase {
         var con: Connection? = null
         try {
             con = instance?.hikari?.connection
-            val prestat = con!!.prepareStatement("CREATE TABLE IF NOT EXISTS alkaskills_playerinfo (playerUUID TEXT(40) NOT NULL DEFAULT '', info JSON NULL DEFAULT NULL,PRIMARY KEY (playerUUID(40)));")
+            val prestat = con!!.prepareStatement("CREATE TABLE IF NOT EXISTS " +
+                    "alkaskills_playerinfo " +
+                    "(playerUUID TEXT(40) NOT NULL DEFAULT '', " +
+                    "info JSON NULL DEFAULT NULL," +
+                    "PRIMARY KEY (playerUUID(40)));")
             prestat.executeUpdate()
         } catch (e: SQLException) {
             e.printStackTrace()
@@ -164,4 +168,4 @@ fun closeInstance() {
     if (instance!!.hikari == null)
         return
     instance!!.hikari!!.close()
-}
+}*/

@@ -1,6 +1,6 @@
 DBName: 'test'
 DBIP: 'localhost'
-Port: 3307
+Port: 3306
 UserName: 'root'
 Password: 'test'
 Encoding: 'utf-8'

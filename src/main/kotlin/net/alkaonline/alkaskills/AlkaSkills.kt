@@ -6,9 +6,6 @@ import codecrafter47.bungeetablistplus.api.bukkit.BungeeTabListPlusBukkitAPI
 import net.alkaonline.alkaskills.bossbar.addPlayerBar
 import net.alkaonline.alkaskills.bossbar.deletePlayerBar
 import net.alkaonline.alkaskills.command.*
-import net.alkaonline.alkaskills.db.DateBase
-import net.alkaonline.alkaskills.db.closeInstance
-import net.alkaonline.alkaskills.db.getInstance
 import net.alkaonline.alkaskills.hottime.HotTimeManager
 import net.alkaonline.alkaskills.listener.*
 import net.alkaonline.alkaskills.placeholder.LevelPlaceHolder
@@ -17,6 +14,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.InventoryView
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitTask
+import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
@@ -24,7 +22,7 @@ import java.util.*
 
 
 var alkaSkills: AlkaSkills? = null
-var dataBase: DateBase? = null
+//var dataBase: DateBase? = null
 
 class AlkaSkills : JavaPlugin() {
 
@@ -40,18 +38,18 @@ class AlkaSkills : JavaPlugin() {
         config.options().copyDefaults(true)
         saveConfig()
 
-        dataBase = getInstance(config)
+        /*dataBase = getInstance(config)
         if (dataBase == null) {
             logger.warning("DB 연결 실패!")
             logger.warning("로컬 파일로 데이터를 읽기 쓰기합니다!")
-        }
+        }*/
 
         /*server.worlds
                 .filter { world -> world.environment == World.Environment.NETHER }
                 .filter { world -> !world.populators.any { populator -> populator is OreBlockPopulator } }
                 .forEach { world -> world.populators.add(OreBlockPopulator()) }*/
 
-        val playerInfoDirectory: Path = dataFolder.toPath()
+        val playerInfoDirectory: Path = File(dataFolder,"player").toPath()
         Files.createDirectories(playerInfoDirectory)
         playerInfoManager = PlayerInfoManager(playerInfoDirectory)
         playerInfoManager.loadOnlinePlayersInfo()
@@ -131,7 +129,7 @@ class AlkaSkills : JavaPlugin() {
         BungeeTabListPlusBukkitAPI.unregisterVariables(this)
 
         //close DB
-        closeInstance()
+        //closeInstance()
 
         if (alkaSkills == this) {
             alkaSkills = null

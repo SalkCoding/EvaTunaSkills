@@ -20,13 +20,13 @@ class PlayerInfoManager(val playerInfoDirectory: Path) {
         }
 
         //Searching DB and loading info, if failed searching files
-        val dataBase = dataBase
+        /*val dataBase = dataBase
         if (dataBase != null) {
             if (dataBase.hasData(id)) {
                 playerInfoes[id] = dataBase.loadData(id)
                 return
             }
-        }
+        }*/
 
         val playerInfoFile = playerInfoDirectory.resolve("$id.json")
         if (Files.exists(playerInfoFile)) {
@@ -44,7 +44,7 @@ class PlayerInfoManager(val playerInfoDirectory: Path) {
             return
         }
 
-        val dataBase = dataBase
+        /*val dataBase = dataBase
         if (dataBase != null) {
             if (dataBase.hasData(id)) {
                 dataBase.updateData(id, playerInfoes[id]!!)
@@ -53,7 +53,7 @@ class PlayerInfoManager(val playerInfoDirectory: Path) {
             }
             playerInfoes.remove(id)
             return
-        }
+        }*/
 
         val playerInfoFile = playerInfoDirectory.resolve("$id.json")
         Files.newBufferedWriter(playerInfoFile).use { bufferedWriter ->
@@ -68,7 +68,7 @@ class PlayerInfoManager(val playerInfoDirectory: Path) {
             return
         }
 
-        val dataBase = dataBase
+        /*val dataBase = dataBase
         if (dataBase != null) {
             if (dataBase.hasData(id)) {
                 dataBase.updateData(id, playerInfoes[id]!!)
@@ -76,7 +76,7 @@ class PlayerInfoManager(val playerInfoDirectory: Path) {
                 dataBase.addData(id, playerInfoes[id]!!)
             }
             return
-        }
+        }*/
 
         val playerInfoFile = playerInfoDirectory.resolve("$id.json")
         Files.newBufferedWriter(playerInfoFile).use { bufferedWriter ->
