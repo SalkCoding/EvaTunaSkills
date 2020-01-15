@@ -109,3 +109,11 @@ val t5Cocoa = Skill(
         "${ChatColor.RED}사탕수수 또는 선인장 농사를 먼저 배워야 합니다."
     ), 3, Material.COCOA_BEANS * 1, SkillOrRequirement(t4SugarCane, t4Cactus), ExclusiveRequirement(t5Beetroot)
 )
+val t6GoldFinger = Skill(
+        "${ChatColor.GOLD}${ChatColor.BOLD}골든 핑거", SkillCategory.FARMING,
+        listOf(
+                "농작물을 수확시 일정 확률로 자동으로 씨앗이 심어집니다.",
+                "${ChatColor.RED}사탕무 또는 코코아 농사를 먼저 배워야 합니다.",
+                "${ChatColor.RED}수박, 호박은 해당 스킬이 적용되지 않습니다."
+        ), 1, Material.GOLDEN_HOE * 1, SkillOrRequirement(t5Beetroot, t5Cocoa)
+)

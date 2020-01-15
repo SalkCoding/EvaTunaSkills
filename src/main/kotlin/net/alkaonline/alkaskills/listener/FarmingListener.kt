@@ -1,21 +1,22 @@
 package net.alkaonline.alkaskills.listener
 
+import net.alkaonline.alkaskills.alkaSkills
 import net.alkaonline.alkaskills.getSkillPoint
 import net.alkaonline.alkaskills.giveAlkaExp
 import net.alkaonline.alkaskills.skilltree.farming.*
-import net.alkaonline.alkaskills.util.CheckSameFarmingSeconds
-import net.alkaonline.alkaskills.util.getCropsAge
-import net.alkaonline.alkaskills.util.getMaxCropsAge
-import net.alkaonline.alkaskills.util.isPlacedByPlayer
+import net.alkaonline.alkaskills.util.*
+import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.Block
+import org.bukkit.block.data.type.Cocoa
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.player.PlayerInteractEvent
+import org.bukkit.material.CocoaPlant
 import java.util.concurrent.ThreadLocalRandom
 
 
@@ -54,10 +55,22 @@ class FarmingListener : Listener {
         if (block.isPlacedByPlayer(player, CheckSameFarmingSeconds)) return
 
         val boundAddition = 0.02
-        when (event.block.type) {
+
+        val goldFinger: Boolean = when (player.getSkillPoint(t6GoldFinger)) {
+            1 -> ThreadLocalRandom.current().nextDouble() <= 0.2
+            /*2 -> ThreadLocalRandom.current().nextDouble() <= 0.2
+            3 -> ThreadLocalRandom.current().nextDouble() <= 0.3*/
+            else -> false
+        }
+
+        when (block.type) {
             Material.WHEAT -> {
                 if (block.getMaxCropsAge() != block.getCropsAge()) return
                 val skillPoint = player.getSkillPoint(t1Wheat)
+                if (goldFinger) {
+                    Bukkit.getScheduler().runTask(alkaSkills!!, Runnable { block.type = Material.WHEAT })
+                    player.sendMessage("골든 핑거가 발동되었습니다!".infoFormat())
+                }
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.02 + ((skillPoint - 1) * boundAddition), 0.04 + ((skillPoint - 1) * boundAddition))
                     player.giveAlkaExp(giveAlkaExp, true)
@@ -74,6 +87,10 @@ class FarmingListener : Listener {
             Material.POTATOES -> {
                 if (block.getMaxCropsAge() != block.getCropsAge()) return
                 val skillPoint = player.getSkillPoint(t2Potato)
+                if (goldFinger) {
+                    Bukkit.getScheduler().runTask(alkaSkills!!, Runnable { block.type = Material.POTATOES })
+                    player.sendMessage("골든 핑거가 발동되었습니다!".infoFormat())
+                }
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.03 + ((skillPoint - 1) * boundAddition), 0.05 + ((skillPoint - 1) * boundAddition))
                     player.giveAlkaExp(giveAlkaExp, true)
@@ -82,6 +99,10 @@ class FarmingListener : Listener {
             Material.CARROTS -> {
                 if (block.getMaxCropsAge() != block.getCropsAge()) return
                 val skillPoint = player.getSkillPoint(t2Carrot)
+                if (goldFinger) {
+                    Bukkit.getScheduler().runTask(alkaSkills!!, Runnable { block.type = Material.CARROTS })
+                    player.sendMessage("골든 핑거가 발동되었습니다!".infoFormat())
+                }
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.03 + ((skillPoint - 1) * boundAddition), 0.05 + ((skillPoint - 1) * boundAddition))
                     player.giveAlkaExp(giveAlkaExp, true)
@@ -90,16 +111,20 @@ class FarmingListener : Listener {
             Material.NETHER_WART -> {
                 if (block.getMaxCropsAge() != block.getCropsAge()) return
                 val skillPoint = player.getSkillPoint(t3NetherWart)
+                if (goldFinger) {
+                    Bukkit.getScheduler().runTask(alkaSkills!!, Runnable { block.type = Material.NETHER_WART })
+                    player.sendMessage("골든 핑거가 발동되었습니다!".infoFormat())
+                }
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.05 + ((skillPoint - 1) * boundAddition), 0.07 + ((skillPoint - 1) * boundAddition))
                     player.giveAlkaExp(giveAlkaExp, true)
                 }
             }
             Material.MELON -> {
-                if (event.block.getRelative(-1, 0, 0).type != Material.ATTACHED_MELON_STEM
-                        && event.block.getRelative(1, 0, 0).type != Material.ATTACHED_MELON_STEM
-                        && event.block.getRelative(0, 0, -1).type != Material.ATTACHED_MELON_STEM
-                        && event.block.getRelative(0, 0, 1).type != Material.ATTACHED_MELON_STEM) return
+                if (block.getRelative(-1, 0, 0).type != Material.ATTACHED_MELON_STEM
+                        && block.getRelative(1, 0, 0).type != Material.ATTACHED_MELON_STEM
+                        && block.getRelative(0, 0, -1).type != Material.ATTACHED_MELON_STEM
+                        && block.getRelative(0, 0, 1).type != Material.ATTACHED_MELON_STEM) return
                 val skillPoint = player.getSkillPoint(t3Melon)
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.04 + ((skillPoint - 1) * boundAddition), 0.06 + ((skillPoint - 1) * boundAddition))
@@ -107,10 +132,10 @@ class FarmingListener : Listener {
                 }
             }
             Material.PUMPKIN -> {
-                if (event.block.getRelative(-1, 0, 0).type != Material.ATTACHED_PUMPKIN_STEM
-                        && event.block.getRelative(1, 0, 0).type != Material.ATTACHED_PUMPKIN_STEM
-                        && event.block.getRelative(0, 0, -1).type != Material.ATTACHED_PUMPKIN_STEM
-                        && event.block.getRelative(0, 0, 1).type != Material.ATTACHED_PUMPKIN_STEM) return
+                if (block.getRelative(-1, 0, 0).type != Material.ATTACHED_PUMPKIN_STEM
+                        && block.getRelative(1, 0, 0).type != Material.ATTACHED_PUMPKIN_STEM
+                        && block.getRelative(0, 0, -1).type != Material.ATTACHED_PUMPKIN_STEM
+                        && block.getRelative(0, 0, 1).type != Material.ATTACHED_PUMPKIN_STEM) return
                 val skillPoint = player.getSkillPoint(t3Pumpkin)
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.04 + ((skillPoint - 1) * boundAddition), 0.06 + ((skillPoint - 1) * boundAddition))
@@ -136,6 +161,10 @@ class FarmingListener : Listener {
             Material.BEETROOTS -> {
                 if (block.getMaxCropsAge() != block.getCropsAge()) return
                 val skillPoint = player.getSkillPoint(t5Beetroot)
+                if (goldFinger) {
+                    Bukkit.getScheduler().runTask(alkaSkills!!, Runnable { block.type = Material.BEETROOTS })
+                    player.sendMessage("골든 핑거가 발동되었습니다!".infoFormat())
+                }
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.06 + ((skillPoint - 1) * boundAddition), 0.08 + ((skillPoint - 1) * boundAddition))
                     player.giveAlkaExp(giveAlkaExp, true)
@@ -144,6 +173,16 @@ class FarmingListener : Listener {
             Material.COCOA -> {
                 if (block.getMaxCropsAge() != block.getCropsAge()) return
                 val skillPoint = player.getSkillPoint(t5Cocoa)
+                if (goldFinger) {
+                    val beforeCocoa = block.blockData as Cocoa
+                    Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
+                        block.type = Material.COCOA
+                        val afterCocoa = block.blockData as Cocoa
+                        afterCocoa.facing = beforeCocoa.facing
+                        block.blockData = afterCocoa
+                    })
+                    player.sendMessage("골든 핑거가 발동되었습니다!".infoFormat())
+                }
                 if (skillPoint > 0) {
                     val giveAlkaExp = ThreadLocalRandom.current().nextDouble(0.05 + ((skillPoint - 1) * boundAddition), 0.07 + ((skillPoint - 1) * boundAddition))
                     player.giveAlkaExp(giveAlkaExp, true)

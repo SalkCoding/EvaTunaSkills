@@ -1,7 +1,5 @@
 package net.alkaonline.alkaskills
 
-import ch.njol.skript.Skript
-import ch.njol.skript.SkriptAPIException
 import codecrafter47.bungeetablistplus.api.bukkit.BungeeTabListPlusBukkitAPI
 import net.alkaonline.alkaskills.bossbar.addPlayerBar
 import net.alkaonline.alkaskills.bossbar.deletePlayerBar
@@ -15,7 +13,6 @@ import org.bukkit.inventory.InventoryView
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitTask
 import java.io.File
-import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.*
@@ -49,7 +46,7 @@ class AlkaSkills : JavaPlugin() {
                 .filter { world -> !world.populators.any { populator -> populator is OreBlockPopulator } }
                 .forEach { world -> world.populators.add(OreBlockPopulator()) }*/
 
-        val playerInfoDirectory: Path = File(dataFolder,"player").toPath()
+        val playerInfoDirectory: Path = File(dataFolder, "player").toPath()
         Files.createDirectories(playerInfoDirectory)
         playerInfoManager = PlayerInfoManager(playerInfoDirectory)
         playerInfoManager.loadOnlinePlayersInfo()
@@ -64,13 +61,15 @@ class AlkaSkills : JavaPlugin() {
             val combatListener = CombatListener()
             combatListener.worldGuardRegister()
             server.pluginManager.registerEvents(combatListener, this)
-        } else
+        } else {
             logger.warning("Plugin can't found WorldGuard plugin")
+        }
         server.pluginManager.registerEvents(ChatListener(), this)
         //server.pluginManager.registerEvents(ChunkListener(), this)
         server.pluginManager.registerEvents(BossBarListener(), this)
         server.pluginManager.registerEvents(FishingListener(), this)
         server.pluginManager.registerEvents(LoggingListener(), this)
+        server.pluginManager.registerEvents(UtilityListener(), this)
 
 
         getCommand("skills")?.setExecutor(SkillCommand())
@@ -83,35 +82,19 @@ class AlkaSkills : JavaPlugin() {
         getCommand("saveinfo")?.setExecutor(SaveInfoCommand())
         getCommand("givepercentageexp")?.setExecutor(GivePercentageExpCommand())
 
-        if (server.pluginManager.isPluginEnabled("Skript")) {
-            try {
-                val addon = Skript.registerAddon(this)
-                try {
-                    //This will register all our syntax for us. Explained below
-                    addon.loadClasses("net.alkaonline.alkaskills", "skript")
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            } catch (e: SkriptAPIException) {
-                logger.warning("SkriptAPIException : Skript expression register failed")
-            }
-        }
-
         //For plugin reload
         for (player: Player in Bukkit.getOnlinePlayers()) addPlayerBar(player)
 
-        playerInfoManager.loadChopTreeData()
-
-        task = Bukkit.getScheduler().runTaskTimer(
+        task = Bukkit.getScheduler().runTaskTimerAsynchronously(
                 this,
                 Runnable {
                     logger.info("Player data auto saved")
-                    for (player in Bukkit.getOnlinePlayers()) {
-                        playerInfoManager.saveInfo(player.uniqueId)
-                    }
+                    Bukkit.getScheduler().runTask(this, Runnable {
+                        playerInfoManager.saveAllInfo()
+                    })
                 },
-                360000,
-                360000
+                6000,
+                6000
         )
 
         BungeeTabListPlusBukkitAPI.registerVariable(this, LevelPlaceHolder())
@@ -119,14 +102,18 @@ class AlkaSkills : JavaPlugin() {
 
     override fun onDisable() {
         task?.cancel()
+
         playerInfoManager.saveAndUnloadAllInfo()
-        playerInfoManager.saveChopTreeData()
 
         hotTimeManager.saveData()
 
         for (player: Player in Bukkit.getOnlinePlayers()) deletePlayerBar(player)
 
-        BungeeTabListPlusBukkitAPI.unregisterVariables(this)
+
+
+        for (entry: Map.Entry<InventoryView, Gui> in openGuis.entries) {
+            entry.key.close()
+        }
 
         //close DB
         //closeInstance()
@@ -134,5 +121,7 @@ class AlkaSkills : JavaPlugin() {
         if (alkaSkills == this) {
             alkaSkills = null
         }
+
+        BungeeTabListPlusBukkitAPI.unregisterVariables(this)
     }
 }

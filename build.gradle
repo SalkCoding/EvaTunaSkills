@@ -48,9 +48,8 @@ dependencies {
         exclude group: 'com.destroystokyo.paper', module: 'paper-api'
     }
     compile group: 'com.zaxxer', name: 'HikariCP', version: '3.4.0'
-    compileOnly files("C:/Users/Josangbeom/Desktop/Minecraft/Library/Paper-1.14.4-b174.jar")
-    compileOnly files("C:/Users/Josangbeom/Desktop/Minecraft/Library/Skript.jar")
-    compileOnly files("C:/Users/Josangbeom/Desktop/Minecraft/Library/worldguard-bukkit-7.0.0.jar")
+    compileOnly files("C:/Users/Josangbeom/Desktop/Minecraft/Library/Paper-1.15.jar")
+    compileOnly files("C:/Users/Josangbeom/Desktop/Minecraft/Library/worldguard-bukkit-7.0.1.jar")
     compileOnly files("C:/Users/Josangbeom/Desktop/Minecraft/Library/worldedit-bukkit-7.0.1.jar")
     compileOnly files("C:/Users/Josangbeom/Desktop/Minecraft/Library/BungeeTabListPlus_BukkitBridge-2.8.11.jar")
 }

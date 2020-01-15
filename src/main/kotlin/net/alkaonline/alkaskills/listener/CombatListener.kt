@@ -6,6 +6,7 @@ import com.sk89q.worldguard.protection.flags.Flags
 import com.sk89q.worldguard.protection.flags.StateFlag
 import com.sk89q.worldguard.protection.regions.ProtectedRegion
 import me.finalchild.kotlinbukkit.util.name
+import me.finalchild.kotlinbukkit.util.plus
 import net.alkaonline.alkaskills.alkaSkills
 import net.alkaonline.alkaskills.getSkillPoint
 import net.alkaonline.alkaskills.skilltree.combat.axeM
@@ -37,8 +38,6 @@ import kotlin.math.min
 
 
 class CombatListener : Listener {
-
-    val random = Random()
 
     val barraging = mutableSetOf<Player>()
 
@@ -73,8 +72,11 @@ class CombatListener : Listener {
 
         val item = damager.inventory.itemInMainHand
         if (item.name == null) return
-        if (item.name!!.contains("" + ChatColor.RED + ChatColor.YELLOW + ChatColor.GREEN + ChatColor.BLACK + ChatColor.DARK_BLUE + ChatColor.RESET, true) ||
-                item.name!!.contains("" + ChatColor.RED + ChatColor.YELLOW + ChatColor.GREEN + ChatColor.BLACK + ChatColor.DARK_BLUE, true)) {
+
+        if (item.name!!.startsWith(ChatColor.GRAY + "", false) ||
+                item.name!!.startsWith(ChatColor.AQUA + "", false)) {
+            /*if (item.name!!.contains("" + ChatColor.RED + ChatColor.YELLOW + ChatColor.GREEN + ChatColor.BLACK + ChatColor.DARK_BLUE + ChatColor.RESET, true) ||
+                    item.name!!.contains("" + ChatColor.RED + ChatColor.YELLOW + ChatColor.GREEN + ChatColor.BLACK + ChatColor.DARK_BLUE, true)) {*/
 
             when (item.type) {
                 Material.WOODEN_SWORD, Material.GOLDEN_SWORD, Material.STONE_SWORD, Material.IRON_SWORD, Material.DIAMOND_SWORD -> {
@@ -99,8 +101,9 @@ class CombatListener : Listener {
                     if (isUsingWorldGuard && region != null) {
                         if (region!!.contains(damager.location.blockX, damager.location.blockY, damager.location.blockZ)) {
                             val isPVPAllow = region!!.getFlag(Flags.PVP) == StateFlag.State.ALLOW
-                            if (!isPVPAllow && entity is Player)
+                            if (!isPVPAllow && entity is Player) {
                                 return
+                            }
                         }
                     }
                     val addition = when (damager.getSkillPoint(swordM)) {
@@ -126,13 +129,14 @@ class CombatListener : Listener {
                                 return
                         } else isPVPAllow = true
                     }
-                    val bound = when (damager.getSkillPoint(axeM)) {
-                        1 -> 5
-                        2 -> 10
-                        3 -> 20
-                        else -> 0
+                    val active = when (damager.getSkillPoint(axeM)) {
+                        1 -> ThreadLocalRandom.current().nextDouble() <= 0.05
+                        2 -> ThreadLocalRandom.current().nextDouble() <= 0.1
+                        3 -> ThreadLocalRandom.current().nextDouble() <= 0.2
+                        4 -> ThreadLocalRandom.current().nextDouble() <= 0.25
+                        else -> false
                     }
-                    if (random.nextInt(100) < bound) {
+                    if (active) {
                         val particleLocation = entity.location
                         particleLocation.y += 1.5
                         particleLocation.world.createExplosion(particleLocation, 0f)
@@ -221,18 +225,18 @@ fun onFall(event: EntityDamageEvent) {
     }
 }*/
 
-    /*@EventHandler(ignoreCancelled = true)
-    fun onDamage(event: EntityDamageByEntityEvent) {
-        if (event.entityType != EntityType.PLAYER || event.damage < 3) {
-            return
-        }
+/*@EventHandler(ignoreCancelled = true)
+fun onDamage(event: EntityDamageByEntityEvent) {
+    if (event.entityType != EntityType.PLAYER || event.damage < 3) {
+        return
+    }
 
-        val bodyMasteryPoint = (event.entity as Player).getSkillPoint(bodyM)
-        if (event.damage <= bodyMasteryPoint) {
-            event.damage = 0.0
-        } else {
-            event.damage -= bodyMasteryPoint
-        }
-    }*/
+    val bodyMasteryPoint = (event.entity as Player).getSkillPoint(bodyM)
+    if (event.damage <= bodyMasteryPoint) {
+        event.damage = 0.0
+    } else {
+        event.damage -= bodyMasteryPoint
+    }
+}*/
 
 }

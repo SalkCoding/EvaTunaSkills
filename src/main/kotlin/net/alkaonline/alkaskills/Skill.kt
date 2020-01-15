@@ -2,8 +2,16 @@ package net.alkaonline.alkaskills
 
 import com.google.common.collect.HashMultimap
 import me.finalchild.kotlinbukkit.util.displayName
+import net.alkaonline.alkaskills.skilltree.combat.axeM
 import net.alkaonline.alkaskills.skilltree.combat.bodyM
+import net.alkaonline.alkaskills.skilltree.fishing.codAlkaExp
+import net.alkaonline.alkaskills.skilltree.fishing.pufferFishAlkaExp
+import net.alkaonline.alkaskills.skilltree.fishing.salmonAlkaExp
+import net.alkaonline.alkaskills.skilltree.fishing.tropicalFishAlkaExp
+import net.alkaonline.alkaskills.skilltree.logging.chopTree
 import net.alkaonline.alkaskills.skilltree.mining.moreMin
+import net.alkaonline.alkaskills.skilltree.utility.doubleJump
+import net.alkaonline.alkaskills.util.warnFormat
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Sound
@@ -58,6 +66,7 @@ class Skill(
 
     fun requestAssignPoint(playerId: UUID): Boolean {
         val player: Player = Bukkit.getPlayer(playerId)!!
+
         if (player.getInfo().getPointsLeft() <= 0 || player.getSkillPoint(this) >= maxLevel) {
             player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
             return false
@@ -75,19 +84,22 @@ class Skill(
                 when (player.getSkillPoint(this)) {
                     0 -> {//0->1
                         if (level <= 10) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 10)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
                     1 -> {//1->2
                         if (level <= 20) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 20)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
                     2 -> {//2->3
                         if (level <= 30) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 30)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
@@ -98,31 +110,73 @@ class Skill(
                 when (player.getSkillPoint(this)) {
                     0 -> {//0->1
                         if (level <= 5) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 5)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
                     1 -> {//1->2
                         if (level <= 10) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 10)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
                     2 -> {//2->3
                         if (level <= 15) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 15)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
                     3 -> {//3->4
                         if (level <= 20) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 20)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
                     4 -> {//4->5
                         if (level <= 25) {
-                            sendFailMessage(player)
+                            sendFailMessage(player, 25)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
+                            return false
+                        }
+                    }
+                }
+            }
+            doubleJump.name -> {
+                val level: Int = player.getInfo().level
+                if (level <= 35) {
+                    sendFailMessage(player, 35)
+                    player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
+                    return false
+                }
+            }
+            axeM.name,
+
+            chopTree.name -> {
+                val level: Int = player.getInfo().level
+                when (player.getSkillPoint(this)) {
+                    3 -> {//3->4
+                        if (level <= 35) {
+                            sendFailMessage(player, 35)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
+                            return false
+                        }
+                    }
+                }
+            }
+            codAlkaExp.name,
+            tropicalFishAlkaExp.name,
+            pufferFishAlkaExp.name,
+            salmonAlkaExp.name -> {
+                val level: Int = player.getInfo().level
+                when (player.getSkillPoint(this)) {
+                    3 -> {//3->4
+                        if (level <= 30) {
+                            sendFailMessage(player, 30)
+                            player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
                             return false
                         }
                     }
@@ -135,8 +189,8 @@ class Skill(
         return true
     }
 
-    private fun sendFailMessage(player: Player) {
-        player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.RED}!${ChatColor.GRAY} ] 레벨이 부족합니다.")
+    private fun sendFailMessage(player: Player, requireLevel: Int) {
+        player.sendMessage("해당 스킬은 참치 레벨 ${requireLevel}레벨 이후부터 올릴 수 있습니다.".warnFormat())
         /*player.spigot().sendMessage(
                 ChatMessageType.ACTION_BAR,
                 *ComponentBuilder("레벨이 부족합니다!").color(net.md_5.bungee.api.ChatColor.RED).create())*/
@@ -170,5 +224,6 @@ enum class SkillCategory {
     MINING,
     FARMING,
     LOGGING,
-    FISHING
+    FISHING,
+    UTILITY
 }

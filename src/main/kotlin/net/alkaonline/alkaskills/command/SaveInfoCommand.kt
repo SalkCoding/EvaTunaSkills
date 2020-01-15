@@ -1,6 +1,7 @@
 package net.alkaonline.alkaskills.command
 
 import net.alkaonline.alkaskills.alkaSkills
+import net.alkaonline.alkaskills.skilltree.logging.chopTree
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -17,6 +18,7 @@ class SaveInfoCommand : CommandExecutor {
         if (args.isEmpty()) {
             for (player in Bukkit.getOnlinePlayers()) {
                 alkaSkills!!.playerInfoManager.saveInfo(player.uniqueId)
+                alkaSkills!!.playerInfoManager.saveSwitchData(chopTree, player.uniqueId)
             }
             sender.sendMessage("Saved all of data")
             return true
@@ -24,7 +26,8 @@ class SaveInfoCommand : CommandExecutor {
             val player = Bukkit.getPlayer(args[0])
             if (player != null) {
                 alkaSkills!!.playerInfoManager.saveInfo(player.uniqueId)
-            }else sender.sendMessage("Please enter the correct name of  player")
+                alkaSkills!!.playerInfoManager.saveSwitchData(chopTree, player.uniqueId)
+            } else sender.sendMessage("Please enter the correct name of  player")
             sender.sendMessage("Saved data")
             return true
         }

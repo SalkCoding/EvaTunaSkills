@@ -9,7 +9,8 @@ import org.bukkit.Material
 val moreMin = Skill(
         "${ChatColor.GRAY}${ChatColor.BOLD}광물 개수 증가", SkillCategory.MINING,
         listOf("채광할 때 나오는 광물의 개수가 증가합니다.",
-                "${ChatColor.RED}10 레벨 마다 스킬레벨을 올릴 수 있습니다."), 3, Material.IRON_PICKAXE * 1
+                "${ChatColor.RED}10 레벨 마다 스킬레벨을 올릴 수 있습니다.",
+                "${ChatColor.RED}시작 레벨이 1이므로 레벨 11부터 올릴 수 있습니다."), 3, Material.IRON_PICKAXE * 1
 )
 
 val betterIron = Skill(

@@ -12,6 +12,7 @@ import net.alkaonline.alkaskills.skilltree.mining.fasterMin
 import net.alkaonline.alkaskills.skilltree.mining.moreMin
 import net.alkaonline.alkaskills.util.broadcastExcept
 import net.alkaonline.alkaskills.util.giveOrDrop
+import net.alkaonline.alkaskills.util.infoFormat
 import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.ComponentBuilder
@@ -185,7 +186,7 @@ class MiningListener : Listener {
                     joiner.add("${rank.displayName} 등급 ${count}개")
                 }
 
-                player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] ${ChatColor.GRAY}철 $joiner${ChatColor.WHITE}가 나왔습니다!")
+                player.sendMessage("${ChatColor.GRAY}철 $joiner${ChatColor.WHITE}가 나왔습니다!".infoFormat())
                 /*if (publicJoiner.length() > 0)
                     broadcastExcept(
                             player,
@@ -212,11 +213,11 @@ class MiningListener : Listener {
                     joiner.add("${rank.displayName} 등급 ${count}개")
                 }
 
-                player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] ${ChatColor.AQUA}다이아몬드 $joiner${ChatColor.WHITE}가 나왔습니다!")
+                player.sendMessage("${ChatColor.AQUA}다이아몬드 $joiner${ChatColor.WHITE}가 나왔습니다!".infoFormat())
                 if (publicJoiner.length() > 0)
                     broadcastExcept(
                             player,
-                            "${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] ${ChatColor.GRAY}${player.displayName}${ChatColor.WHITE}님이 ${ChatColor.AQUA}다이아몬드 $publicJoiner${ChatColor.WHITE}를 캤습니다!"
+                            "${ChatColor.GRAY}${player.displayName}${ChatColor.WHITE}님이 ${ChatColor.AQUA}다이아몬드 $publicJoiner${ChatColor.WHITE}를 캤습니다!".infoFormat()
                     )
                 player.giveAlkaExp(20.0, true)
             }
@@ -233,7 +234,7 @@ class MiningListener : Listener {
                 val count = (1..5).random()
                 player.giveOrDrop(Material.COAL * count)
                 player.giveAlkaExp(0.3, true)
-                player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] 석탄 ${count}개가 나왔습니다!")
+                player.sendMessage("석탄 ${count}개가 나왔습니다!".infoFormat())
                 // broadcastExcept(
                 //     player,
                 //     "${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] ${ChatColor.AQUA}${player.displayName}${ChatColor.WHITE}님이 석탄 ${count}개를 캤습니다!"
@@ -243,7 +244,7 @@ class MiningListener : Listener {
                 val count = (2..5).random()
                 player.giveOrDrop(Material.GOLD_INGOT * count)
                 player.giveAlkaExp(10.0, true)
-                player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] 금 ${count}개가 나왔습니다!")
+                player.sendMessage("금 ${count}개가 나왔습니다!".infoFormat())
                 // broadcastExcept(
                 //     player,
                 //     "${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] ${ChatColor.AQUA}${player.displayName}${ChatColor.WHITE}님이 금 ${count}개를 캤습니다!"
@@ -253,7 +254,7 @@ class MiningListener : Listener {
                 val count = (1..3).random()
                 player.giveOrDrop(Material.REDSTONE * count)
                 player.giveAlkaExp(6.0, true)
-                player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] 레드스톤 ${count}개가 나왔습니다!")
+                player.sendMessage("레드스톤 ${count}개가 나왔습니다!".infoFormat())
                 // broadcastExcept(
                 //     player,
                 //     "${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] ${ChatColor.AQUA}${player.displayName}${ChatColor.WHITE}님이 레드스톤 ${count}개를 캤습니다!"
@@ -263,7 +264,7 @@ class MiningListener : Listener {
                 val count = (1..3).random()
                 player.giveOrDrop(ItemStack(Material.LAPIS_LAZULI, count))
                 player.giveAlkaExp(6.0, true)
-                player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] 청금석 ${count}개가 나왔습니다!")
+                player.sendMessage("청금석 ${count}개가 나왔습니다!".infoFormat())
                 // if (!player.isOp) {
                 //     broadcastExcept(
                 //         player,
@@ -275,7 +276,7 @@ class MiningListener : Listener {
                 val count = (1..3).random()
                 player.giveOrDrop(ItemStack(Material.EMERALD, count))
                 player.giveAlkaExp(45.0, true)
-                player.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] 에메랄드 ${count}개가 나왔습니다!")
+                player.sendMessage("에메랄드 ${count}개가 나왔습니다!".infoFormat())
                 // if (!player.isOp) {
                 //     broadcastExcept(
                 //         player,

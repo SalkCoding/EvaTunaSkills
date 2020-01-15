@@ -2,10 +2,10 @@ package net.alkaonline.alkaskills.listener
 
 import net.alkaonline.alkaskills.getSkillPoint
 import net.alkaonline.alkaskills.giveAlkaExp
-import net.alkaonline.alkaskills.skilltree.fishing.codAlkaExp
-import net.alkaonline.alkaskills.skilltree.fishing.pufferFishAlkaExp
-import net.alkaonline.alkaskills.skilltree.fishing.salmonAlkaExp
-import net.alkaonline.alkaskills.skilltree.fishing.tropicalFishAlkaExp
+import net.alkaonline.alkaskills.skilltree.fishing.*
+import net.alkaonline.alkaskills.skilltree.logging.loggingFortune
+import net.alkaonline.alkaskills.util.giveOrDrop
+import net.alkaonline.alkaskills.util.infoFormat
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Item
@@ -18,18 +18,31 @@ class FishingListener : Listener {
 
     @EventHandler
     fun onFishing(event: PlayerFishEvent) {
-        if(event.isCancelled) return
+        if (event.isCancelled) return
 
-        if(event.state != PlayerFishEvent.State.CAUGHT_FISH) return
+        if (event.state != PlayerFishEvent.State.CAUGHT_FISH) return
 
         val caught = event.caught ?: return
 
         val player = event.player
 
-        if(caught.customName != null) return
+        if (caught.customName != null) return
 
         if (caught.type != EntityType.DROPPED_ITEM) return
-        when((caught as Item).itemStack.type){
+
+        val isFortuneActive: Boolean = when (player.getSkillPoint(fishingFortune)) {
+            1 -> ThreadLocalRandom.current().nextDouble() <= 0.05
+            2 -> ThreadLocalRandom.current().nextDouble() <= 0.07
+            3 -> ThreadLocalRandom.current().nextDouble() <= 0.10
+            else -> false
+        }
+        if (isFortuneActive) {
+            val droppedItem = caught as Item
+            player.giveOrDrop(droppedItem.itemStack)
+            player.sendMessage("낚시 행운이 발동하였습니다!".infoFormat())
+        }
+        //probability code
+        when ((caught as Item).itemStack.type) {
             Material.COD -> {
                 val boundAddition = 0.2
                 val skillPoint = player.getSkillPoint(codAlkaExp)

@@ -9,8 +9,11 @@ import net.alkaonline.alkaskills.skilltree.fishing.openFishingGui
 import net.alkaonline.alkaskills.skilltree.logging.chopTree
 import net.alkaonline.alkaskills.skilltree.logging.openLoggingSkillGui
 import net.alkaonline.alkaskills.skilltree.mining.openMiningSkillGui
+import net.alkaonline.alkaskills.skilltree.utility.doubleJump
+import net.alkaonline.alkaskills.skilltree.utility.openUtilitySkillGui
+import net.alkaonline.alkaskills.util.warnFormat
 import org.bukkit.*
-import org.bukkit.craftbukkit.v1_14_R1.CraftServer
+import org.bukkit.craftbukkit.v1_15_R1.CraftServer
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryAction
@@ -24,13 +27,18 @@ import kotlin.math.roundToInt
 
 class SkillGui(val playerId: UUID) : Gui {
 
+    val combatButton = (Material.GOLDEN_SWORD * 1).also {
+        it.name = "${ChatColor.GOLD}${ChatColor.BOLD}전투 스킬"
+        it.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_UNBREAKABLE)
+    }
+
     val miningButton = (Material.IRON_PICKAXE * 1).also {
         it.name = "${ChatColor.GRAY}${ChatColor.BOLD}채광 스킬"
         it.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_UNBREAKABLE)
     }
 
-    val combatButton = (Material.GOLDEN_SWORD * 1).also {
-        it.name = "${ChatColor.GOLD}${ChatColor.BOLD}전투 스킬"
+    val utilityButton = (Material.TOTEM_OF_UNDYING * 1).also {
+        it.name = "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}유틸리티 스킬"
         it.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_UNBREAKABLE)
     }
 
@@ -52,12 +60,15 @@ class SkillGui(val playerId: UUID) : Gui {
     fun render(view: Inventory) {
         view[0, 8] = makePlayerInfoButton(playerId)
 
+        view[1, 2] = combatButton
+        view[1, 4] = miningButton
+        view[1, 6] = utilityButton
+
         view[3, 2] = farmingButton
         view[3, 4] = fishingButton
         view[3, 6] = loggingButton
 
-        view[1, 3] = miningButton
-        view[1, 5] = combatButton
+
 
         for (i in 0..7) {
             view[0, i] = grayGlass
@@ -80,28 +91,38 @@ class SkillGui(val playerId: UUID) : Gui {
         val player = event.whoClicked as Player
 
         when (event.rawSlot) {
-            12 -> {
-                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable() {
-                    player.openMiningSkillGui()
-                })
-            }
-            14 -> {
-                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable() {
+            11 -> {
+                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
                     player.openCombatSkillGui()
                 })
             }
+            13 -> {
+                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
+                    player.openMiningSkillGui()
+                })
+            }
+            15 -> {
+                if (player.getInfo().level > 15) {
+                    Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
+                        player.openUtilitySkillGui()
+                    })
+                } else {
+                    player.sendMessage("유틸리티 스킬은 35레벨 이후부터 사용 가능합니다.".warnFormat())
+                    player.playSound(player.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
+                }
+            }
             29 -> {
-                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable() {
+                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
                     player.openFarmingSkillGui()
                 })
             }
             31 -> {
-                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable() {
+                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
                     player.openFishingGui()
                 })
             }
             33 -> {
-                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable() {
+                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
                     player.openLoggingSkillGui()
                 })
             }
@@ -139,12 +160,12 @@ fun makePlayerInfoButton(playerId: UUID): ItemStack {
 
 }
 
-fun makeChopTreeStatusButton(playerID: UUID): ItemStack {
+fun makeSwitchStatusButton(skill: Skill, playerID: UUID): ItemStack {
     return ItemStack(Material.RED_STAINED_GLASS_PANE).also {
         val player = Bukkit.getPlayer(playerID) as Player
-        if (player.getSkillPoint(chopTree) > 0) {
+        if (player.getSkillPoint(skill) > 0) {
             when {
-                player.isChopTreeOn() -> {
+                player.isSwitchOn(skill) -> {
                     it.type = Material.GREEN_STAINED_GLASS_PANE
                     it.displayName = "${ChatColor.GREEN}${ChatColor.BOLD}활성화"
                 }
@@ -152,8 +173,18 @@ fun makeChopTreeStatusButton(playerID: UUID): ItemStack {
                     it.displayName = "${ChatColor.RED}${ChatColor.BOLD}비활성화"
                 }
             }
+        } else {
+            it.displayName = "${ChatColor.RED}${ChatColor.BOLD}비활성화"
         }
     }
+}
+
+val switchOnButton = ItemStack(Material.GREEN_WOOL).also {
+    it.displayName = "${ChatColor.GREEN}${ChatColor.BOLD}활성화"
+}
+
+val switchOffButton = ItemStack(Material.RED_WOOL).also {
+    it.displayName = "${ChatColor.RED}${ChatColor.BOLD}비활성화"
 }
 
 val backButton = ItemStack(Material.PLAYER_HEAD).also {
@@ -167,12 +198,4 @@ val backButton = ItemStack(Material.PLAYER_HEAD).also {
 
 val grayGlass = ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1).also {
     it.displayName = " "
-}
-
-val chopTreeOnButton = ItemStack(Material.GREEN_WOOL).also {
-    it.displayName = "${ChatColor.GREEN}${ChatColor.BOLD}찹트리 활성화"
-}
-
-val chopTreeOffButton = ItemStack(Material.RED_WOOL).also {
-    it.displayName = "${ChatColor.RED}${ChatColor.BOLD}찹트리 비활성화"
 }

@@ -35,8 +35,10 @@ class FarmingSkillGui(val playerId: UUID) : Gui {
         view[3, 6] = t4Cactus.makeButton(playerId)
         view[1, 7] = t5Beetroot.makeButton(playerId)
         view[3, 7] = t5Cocoa.makeButton(playerId)
+        view[0, 4] = t6GoldFinger.makeButton(playerId)
 
         for (i in 0..6) {
+            if (i == 4) continue
             view[0, i] = grayGlass
         }
         for (i in 0..8) {
@@ -50,7 +52,7 @@ class FarmingSkillGui(val playerId: UUID) : Gui {
 
     override fun onClick(event: InventoryClickEvent) {
         if (event.action != InventoryAction.PICKUP_ALL
-            || event.click != ClickType.LEFT) {
+                || event.click != ClickType.LEFT) {
             return
         }
 
@@ -59,7 +61,7 @@ class FarmingSkillGui(val playerId: UUID) : Gui {
 
         when (event.rawSlot) {
             7 -> {
-                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable() {
+                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
                     player.openSkillGui()
                 })
             }
@@ -118,6 +120,11 @@ class FarmingSkillGui(val playerId: UUID) : Gui {
                 render(event.inventory)
                 player.updateInventory()
             }
+            4->{
+                t6GoldFinger.requestAssignPoint(id)
+                render(event.inventory)
+                player.updateInventory()
+            }
 
         }
 
@@ -126,7 +133,7 @@ class FarmingSkillGui(val playerId: UUID) : Gui {
 }
 
 fun Player.openFarmingSkillGui() {
-    val inventory = Bukkit.createInventory(null, 45,  ChatColor.DARK_GREEN + ChatColor.BOLD + "농사 스킬")
+    val inventory = Bukkit.createInventory(null, 45, ChatColor.DARK_GREEN + ChatColor.BOLD + "농사 스킬")
     val gui = FarmingSkillGui(this.uniqueId)
     gui.render(inventory)
 

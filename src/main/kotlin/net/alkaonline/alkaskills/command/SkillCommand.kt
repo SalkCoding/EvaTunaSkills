@@ -2,6 +2,7 @@ package net.alkaonline.alkaskills.command
 
 import net.alkaonline.alkaskills.listener.loadingSet
 import net.alkaonline.alkaskills.skilltree.openSkillGui
+import net.alkaonline.alkaskills.util.warnFormat
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -16,7 +17,7 @@ class SkillCommand : CommandExecutor {
             return true
         }
         if(loadingSet.contains(sender.uniqueId)){
-            sender.sendMessage("${ChatColor.GRAY}[ ${ChatColor.YELLOW}!${ChatColor.GRAY} ] 데이터 로딩중입니다!")
+            sender.sendMessage("데이터 로딩중입니다!".warnFormat())
             return true
         }
         sender.openSkillGui()

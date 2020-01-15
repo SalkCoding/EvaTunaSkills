@@ -15,6 +15,18 @@ import java.util.*
 val CheckSameFarmingSeconds = 900
 val CheckSameLoggingSeconds = 600
 
+fun String.infoFormat(): String {
+    return "${ChatColor.GRAY}[${ChatColor.GREEN} ! ${ChatColor.GRAY}] " + this
+}
+
+fun String.warnFormat(): String {
+    return "${ChatColor.GRAY}[${ChatColor.YELLOW} ! ${ChatColor.GRAY}] " + this
+}
+
+fun String.errorFormat(): String {
+    return "${ChatColor.GRAY}[${ChatColor.RED} ! ${ChatColor.GRAY}] " + this
+}
+
 fun Player.giveOrDrop(item: ItemStack) {
     val left = this.inventory.addItem(item)
     for (entry in left) {
@@ -80,7 +92,7 @@ fun Block.isPlacedByPlayer(player: Player, second: Int): Boolean {
             val placedTime = Calendar.getInstance()
             placedTime.timeInMillis = v.asLong()
             placedTime.add(Calendar.SECOND, second)
-            if(placedTime.after(Calendar.getInstance()))
+            if (placedTime.after(Calendar.getInstance()))
                 return true
         }
     }

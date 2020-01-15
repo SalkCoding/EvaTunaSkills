@@ -54,7 +54,7 @@ class CombatSkillGui(val playerId: UUID) : Gui {
 
         when (event.rawSlot) {
             7 -> {
-                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable() {
+                Bukkit.getScheduler().runTask(alkaSkills!!, Runnable {
                     player.openSkillGui()
                 })
             }

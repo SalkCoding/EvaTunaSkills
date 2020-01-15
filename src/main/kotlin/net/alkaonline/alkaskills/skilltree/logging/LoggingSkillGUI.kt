@@ -2,9 +2,7 @@ package net.alkaonline.alkaskills.skilltree.logging
 
 import me.finalchild.kotlinbukkit.util.plus
 import me.finalchild.kotlinbukkit.util.set
-import net.alkaonline.alkaskills.Gui
-import net.alkaonline.alkaskills.alkaSkills
-import net.alkaonline.alkaskills.setChopTree
+import net.alkaonline.alkaskills.*
 import net.alkaonline.alkaskills.skilltree.*
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
@@ -22,11 +20,12 @@ class LoggingSkillGUI(val playerId: UUID) : Gui {
         view[0, 8] = makePlayerInfoButton(playerId)
 
         view[2, 2] = canAlkaExp.makeButton(playerId)
+        view[2, 4] = loggingFortune.makeButton(playerId)
         view[2, 6] = chopTree.makeButton(playerId)
 
-        view[3, 5] = chopTreeOnButton
-        view[3, 6] = makeChopTreeStatusButton(playerId)
-        view[3, 7] = chopTreeOffButton
+        view[3, 5] = switchOnButton
+        view[3, 6] = makeSwitchStatusButton(chopTree, playerId)
+        view[3, 7] = switchOffButton
 
         for (i in 0..6) {
             view[0, i] = grayGlass
@@ -47,7 +46,6 @@ class LoggingSkillGUI(val playerId: UUID) : Gui {
         }
 
         val player = event.whoClicked as Player
-        val id = player.uniqueId
 
         when (event.rawSlot) {
             7 -> {
@@ -60,20 +58,29 @@ class LoggingSkillGUI(val playerId: UUID) : Gui {
                 render(event.inventory)
                 player.updateInventory()
             }
+            22 -> {
+                loggingFortune.requestAssignPoint(playerId)
+                render(event.inventory)
+                player.updateInventory()
+            }
             24 -> {
                 chopTree.requestAssignPoint(playerId)
                 render(event.inventory)
                 player.updateInventory()
             }
             32 -> {
-                player.setChopTree(true)
-                render(event.inventory)
-                player.updateInventory()
+                if (player.getSkillPoint(chopTree) > 0) {
+                    player.setSwitch(chopTree, true)
+                    render(event.inventory)
+                    player.updateInventory()
+                }
             }
             34 -> {
-                player.setChopTree(false)
-                render(event.inventory)
-                player.updateInventory()
+                if (player.getSkillPoint(chopTree) > 0) {
+                    player.setSwitch(chopTree, false)
+                    render(event.inventory)
+                    player.updateInventory()
+                }
             }
         }
 

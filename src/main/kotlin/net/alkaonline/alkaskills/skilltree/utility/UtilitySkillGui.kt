@@ -1,13 +1,12 @@
-package net.alkaonline.alkaskills.skilltree.fishing
+package net.alkaonline.alkaskills.skilltree.utility
 
 import me.finalchild.kotlinbukkit.util.plus
 import me.finalchild.kotlinbukkit.util.set
 import net.alkaonline.alkaskills.Gui
 import net.alkaonline.alkaskills.alkaSkills
-import net.alkaonline.alkaskills.skilltree.backButton
-import net.alkaonline.alkaskills.skilltree.grayGlass
-import net.alkaonline.alkaskills.skilltree.makePlayerInfoButton
-import net.alkaonline.alkaskills.skilltree.openSkillGui
+import net.alkaonline.alkaskills.getSkillPoint
+import net.alkaonline.alkaskills.setSwitch
+import net.alkaonline.alkaskills.skilltree.*
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
@@ -17,17 +16,17 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.Inventory
 import java.util.*
 
-class FishingSkillGUI(val playerId: UUID) : Gui {
+class UtilitySkillGui(val playerId: UUID) : Gui {
 
     fun render(view: Inventory) {
         view[0, 7] = backButton
         view[0, 8] = makePlayerInfoButton(playerId)
 
-        view[1, 2] = codAlkaExp.makeButton(playerId)
-        view[1, 6] = tropicalFishAlkaExp.makeButton(playerId)
-        view[2, 4] = fishingFortune.makeButton(playerId)
-        view[3, 2] = salmonAlkaExp.makeButton(playerId)
-        view[3, 6] = pufferFishAlkaExp.makeButton(playerId)
+        view[2, 4] = doubleJump.makeButton(playerId)
+
+        view[3, 3] = switchOnButton
+        view[3, 4] = makeSwitchStatusButton(doubleJump, playerId)
+        view[3, 5] = switchOffButton
 
         for (i in 0..6) {
             view[0, i] = grayGlass
@@ -56,30 +55,24 @@ class FishingSkillGUI(val playerId: UUID) : Gui {
                     player.openSkillGui()
                 })
             }
-            11 -> {
-                codAlkaExp.requestAssignPoint(playerId)
-                render(event.inventory)
-                player.updateInventory()
-            }
-            15 -> {
-                tropicalFishAlkaExp.requestAssignPoint(playerId)
-                render(event.inventory)
-                player.updateInventory()
-            }
             22 -> {
-                fishingFortune.requestAssignPoint(playerId)
+                doubleJump.requestAssignPoint(id)
                 render(event.inventory)
                 player.updateInventory()
             }
-            29 -> {
-                salmonAlkaExp.requestAssignPoint(playerId)
-                render(event.inventory)
-                player.updateInventory()
+            30 -> {
+                if (player.getSkillPoint(doubleJump) > 0) {
+                    player.setSwitch(doubleJump, true)
+                    render(event.inventory)
+                    player.updateInventory()
+                }
             }
-            33 -> {
-                pufferFishAlkaExp.requestAssignPoint(playerId)
-                render(event.inventory)
-                player.updateInventory()
+            32 -> {
+                if (player.getSkillPoint(doubleJump) > 0) {
+                    player.setSwitch(doubleJump, false)
+                    render(event.inventory)
+                    player.updateInventory()
+                }
             }
         }
 
@@ -87,9 +80,9 @@ class FishingSkillGUI(val playerId: UUID) : Gui {
 
 }
 
-fun Player.openFishingGui() {
-    val inventory = Bukkit.createInventory(null, 45, ChatColor.DARK_GRAY + ChatColor.BOLD + "낚시 스킬")
-    val gui = FishingSkillGUI(this.uniqueId)
+fun Player.openUtilitySkillGui() {
+    val inventory = Bukkit.createInventory(null, 45, ChatColor.DARK_GRAY + ChatColor.BOLD + "유틸리티 스킬")
+    val gui = UtilitySkillGui(this.uniqueId)
     gui.render(inventory)
 
     val view = this.openInventory(inventory)

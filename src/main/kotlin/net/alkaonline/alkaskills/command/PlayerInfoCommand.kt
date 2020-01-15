@@ -1,6 +1,8 @@
 package net.alkaonline.alkaskills.command
 
 import net.alkaonline.alkaskills.getInfo
+import net.alkaonline.alkaskills.util.errorFormat
+import net.alkaonline.alkaskills.util.infoFormat
 import net.md_5.bungee.api.ChatColor
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
@@ -38,13 +40,13 @@ class PlayerInfoCommand : CommandExecutor {
                         twlevel *= 1.1
                         System.out.println("level $i " + (1.25.pow(i.toDouble()) * 60).toInt() + " | " + twlevel.toInt())*/
                 }
-                sender.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] " + target.name)
-                sender.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] - 레벨 : " + target.getInfo().level)
-                sender.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] - 경험치 : " + target.getInfo().exp.roundToInt() + "/" + target.getInfo().getNeededExpToLevelUp())
-                sender.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] - 남은 스킬 포인트 : " + target.getInfo().getPointsLeft())
-                sender.sendMessage("${ChatColor.GRAY}[ ${ChatColor.GREEN}!${ChatColor.GRAY} ] - 스킬 포인트 총합 : " + target.getInfo().getSumOfPoints())
+                sender.sendMessage(target.name.infoFormat())
+                sender.sendMessage(" - 레벨 : ${target.getInfo().level}".infoFormat())
+                sender.sendMessage(" - 경험치 : ${target.getInfo().exp.roundToInt()} / ${target.getInfo().getNeededExpToLevelUp()}".infoFormat())
+                sender.sendMessage(" - 남은 스킬 포인트 : ${target.getInfo().getPointsLeft()}".infoFormat())
+                sender.sendMessage(" - 스킬 포인트 총합 : ${target.getInfo().getSumOfPoints()}".infoFormat())
             } else {
-                sender.sendMessage("${ChatColor.GRAY}[ ${ChatColor.RED}!${ChatColor.GRAY} ] 존재하지 않는 플레이어입니다.")
+                sender.sendMessage("존재하지 않는 플레이어입니다.".errorFormat())
             }
             return true
         }

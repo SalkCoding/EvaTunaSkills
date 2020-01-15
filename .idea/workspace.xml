@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="031b074c-51cf-4a2b-b497-fe721017535e" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,6 +82,11 @@
     </option>
   </component>
   <component name="ProjectId" id="1OxHjIFxwJW3qQ4V7UHvPDzoOeW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
@@ -95,7 +99,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EvaTunaEnchant" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -105,10 +109,10 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15429688" />
     <property name="project.structure.side.proportion" value="0.36479127" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="OPEN_URL_DIALOG">
@@ -116,24 +120,17 @@
       <recent name="https://github.com/EvaTuna/Towny" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="net.alkaonline.alkaskills.skillswitch" />
       <recent name="net.alkaonline.alkaskills.command" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="net.alkaonline.alkaskills.skillswitch.child" />
+      <recent name="net.alkaonline.alkaskills.skillswitch" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Josangbeom\Desktop\Programming\IntelliJ IDEA\Java\AlkaSkills\src\main\kotlin" />
       <recent name="C:\Users\Josangbeom\Desktop\Programming\IntelliJ IDEA\Java\AlkaSkills\src" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="AlkaSkills [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -160,6 +157,18 @@
         <item itemvalue="Gradle.AlkaSkills [dependencies]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -272,10 +281,86 @@
       <workItem from="1569851764438" duration="1177000" />
       <workItem from="1570253989868" duration="347000" />
       <workItem from="1570267996209" duration="21000" />
+      <workItem from="1570366797331" duration="342000" />
+      <workItem from="1570524872428" duration="76000" />
+      <workItem from="1570613194509" duration="52000" />
+      <workItem from="1572525287877" duration="132000" />
+      <workItem from="1572698410102" duration="4025000" />
+      <workItem from="1572703586604" duration="20000" />
+      <workItem from="1574161583784" duration="4286000" />
+      <workItem from="1574415252490" duration="1796000" />
+      <workItem from="1574586619347" duration="14000" />
+      <workItem from="1574858304099" duration="2262000" />
+      <workItem from="1574860675827" duration="678000" />
+      <workItem from="1574866804313" duration="608000" />
+      <workItem from="1575205551454" duration="808000" />
+      <workItem from="1575296358203" duration="225000" />
+      <workItem from="1575296608473" duration="1444000" />
+      <workItem from="1575298087716" duration="3446000" />
+      <workItem from="1575363116181" duration="7534000" />
+      <workItem from="1575376327153" duration="327000" />
+      <workItem from="1575376825458" duration="753000" />
+      <workItem from="1575461878560" duration="880000" />
+      <workItem from="1575535493548" duration="4255000" />
+      <workItem from="1575548663458" duration="171000" />
+      <workItem from="1575551361167" duration="44000" />
+      <workItem from="1576147019493" duration="4543000" />
+      <workItem from="1576339565552" duration="45000" />
+      <workItem from="1576676686650" duration="1355000" />
+      <workItem from="1576678435144" duration="25000" />
+      <workItem from="1576678591272" duration="688000" />
+      <workItem from="1577003143416" duration="395000" />
+      <workItem from="1577080195384" duration="260000" />
+      <workItem from="1577093968626" duration="2689000" />
+      <workItem from="1577169428828" duration="320000" />
+      <workItem from="1577170069968" duration="105000" />
+      <workItem from="1577170702359" duration="6000" />
+      <workItem from="1577196612258" duration="9894000" />
+      <workItem from="1577263842174" duration="35000" />
+      <workItem from="1577274067132" duration="1481000" />
+      <workItem from="1577284066119" duration="3406000" />
+      <workItem from="1577429607073" duration="516000" />
+      <workItem from="1577430586259" duration="769000" />
+      <workItem from="1577509835726" duration="946000" />
+      <workItem from="1577531460299" duration="23000" />
+      <workItem from="1577558695967" duration="323000" />
+      <workItem from="1577596377759" duration="10000" />
+      <workItem from="1577711107134" duration="1246000" />
+      <workItem from="1578219101369" duration="228000" />
+      <workItem from="1578230495279" duration="1802000" />
+      <workItem from="1578307211518" duration="2047000" />
+      <workItem from="1578467876864" duration="1000" />
+      <workItem from="1578923786589" duration="44000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="179" width="986" height="742" key="#Project_Structure" timestamp="1577430837357">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="179" width="986" height="742" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1577430837357" />
+    <state x="712" y="174" width="574" height="691" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1577200992945">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="712" y="174" width="574" height="691" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577200992945" />
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1578923829419">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578923829419" />
+    <state x="190" y="119" key="SettingsEditor" timestamp="1575298052850">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="190" y="119" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1575298052850" />
+    <state x="628" y="266" width="664" height="516" key="find.popup" timestamp="1578230822058">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="628" y="266" width="664" height="516" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578230822058" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1577286718718">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577286718718" />
   </component>
 </project>
